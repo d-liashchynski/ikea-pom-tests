@@ -15,8 +15,8 @@ export class AllJobsPage {
 
     async exploreJobs(): Promise<void> {
         await this.exploreJobsButton.click();
-        await this.page.waitForLoadState('networkidle');
-        await this.page.waitForTimeout(1000);
+        // await this.page.waitForLoadState('networkidle');
+        // await this.page.waitForTimeout(1000);
     };
 
     async acceptCookies (): Promise<void> {

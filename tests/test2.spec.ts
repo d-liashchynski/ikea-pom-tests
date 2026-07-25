@@ -13,9 +13,9 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { AllJobsPage } from '../pages/AllJobsPage';
 import { JobPage } from '../pages/JobPage';
-import { noSavedJobsMessage } from '../testData';
+import { messageWithoutSavedJobs, jobsPageURL, ikeaJobsPageURL } from '../testData';
 
-test.describe('Saved jobs empty state', () => { //REVIEW: the test.describe name is not descriptive enough
+test.describe('Saved jobs empty state on IKEA Jobs website', () => { 
     let homePage: HomePage;
     let allJobsPage: AllJobsPage;
     let jobPage: JobPage;
@@ -30,13 +30,13 @@ test.describe('Saved jobs empty state', () => { //REVIEW: the test.describe name
     test('Should show 0 saved jobs and empty state message when nothing is saved', async ({ page }) => {
         await test.step('Step 1: click Jobs tab', async () => {
             await homePage.navigateToJobs();
-            await expect(page).toHaveURL('/global/en/jobs/'); //REVIEW: Keep the URL value in an appropriate class
+            await expect(page).toHaveURL(jobsPageURL); 
         });
 
         await test.step('Step 2: Click on Explore available jobs', async () => {
             allJobsPage = new AllJobsPage(page);
             await allJobsPage.exploreJobs();
-            await expect(page).toHaveURL('https://jobs.ikea.com/en'); //REVIEW: Keep the URL value in an appropriate class
+            await expect(page).toHaveURL(ikeaJobsPageURL); 
             await allJobsPage.acceptCookies();
         });
 
@@ -47,7 +47,7 @@ test.describe('Saved jobs empty state', () => { //REVIEW: the test.describe name
 
         await test.step('Step 4: Click Saved jobs and check the empty state message', async () => {
             await jobPage.clickSavedJobsDropdown();
-            await jobPage.checkNoSavedJobsMessage(noSavedJobsMessage);
+            await jobPage.checkNoSavedJobsMessage(messageWithoutSavedJobs);
         });
     });
 });

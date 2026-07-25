@@ -29,7 +29,7 @@ export class JobPage {
     };
 
     async checkNumberOfSavedJobs(amount: string): Promise<void> {
-        await expect(this.heartIconNumber).toContainText(amount);
+        await expect(this.heartIconNumber).toHaveText(`(${amount})`);
     };
 
     async clickSavedJobsDropdown(): Promise<void> {

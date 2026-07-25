@@ -42,12 +42,10 @@
 import { test, expect } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { AllJobsPage } from '../pages/AllJobsPage';
-import { jobTitle } from '../testData';
 import { SearchJobPage } from '../pages/SearchJobPage';
 import { JobResultsPage } from '../pages/JobResultsPage';
-import { fallbackJobTitle } from '../testData';
 import { JobPage } from '../pages/JobPage';
-import { uniqueEmail, jobCategory, location, confirmMessage } from '../testData';
+import { jobTitle, fallbackJobTitle, uniqueEmail, jobCategory, location, confirmMessage, jobsPageURL, ikeaJobsPageURL } from '../testData';
 
 test.describe('Search a job and Subscribe for a job', () => {
     let homePage: HomePage;
@@ -67,16 +65,16 @@ test.describe('Search a job and Subscribe for a job', () => {
 
     // Scenario 1: Search for a job
     test('Should open the site, navigate to the Job tab, search a job, save it, and check the saved job', async ({ page }) => {
-        await test.step('Step1: click Jobs tab', async () => {
+        await test.step('Step 1: click Jobs tab', async () => {
             await homePage.navigateToJobs();
-            await expect(page).toHaveURL('/global/en/jobs/');
+            await expect(page).toHaveURL(jobsPageURL);
         });
 
-        await test.step('Step2: Click on Explore available jobs', async () => {
+        await test.step('Step 2: Click on Explore available jobs', async () => {
             allJobsPage = new AllJobsPage(page);
             await allJobsPage.exploreJobs();
             
-            await expect(page).toHaveURL('https://jobs.ikea.com/en');
+            await expect(page).toHaveURL(ikeaJobsPageURL);
             await allJobsPage.acceptCookies();
         });
 
@@ -124,19 +122,19 @@ test.describe('Search a job and Subscribe for a job', () => {
 
     });
 
-    // // Scenario 2: Subscribe for a job
+    // Scenario 2: Subscribe for a job
     test('Should subscribe for a job', { tag: '@subscribe' }, async({ page }) => {
         searchJobPage = new SearchJobPage(page);
-        await test.step('Step1: click on Jobs tab', async () => {
+        await test.step('Step 1: click on Jobs tab', async () => {
             await homePage.navigateToJobs();
-            await expect(page).toHaveURL('/global/en/jobs/');
+            await expect(page).toHaveURL(jobsPageURL);
         });
 
-        await test.step('Step2: Click on Explore available jobs', async () => {
+        await test.step('Step 2: Click on Explore available jobs', async () => {
             allJobsPage = new AllJobsPage(page);
             await allJobsPage.exploreJobs();
             
-            await expect(page).toHaveURL('https://jobs.ikea.com/en');
+            await expect(page).toHaveURL(ikeaJobsPageURL);
             await allJobsPage.acceptCookies();
         });
 
