@@ -7,6 +7,7 @@ export class JobPage {
     readonly heartIconNumber: Locator;
     readonly savedJobsDropdown: Locator;
     readonly savedJobsTitle: Locator;
+    readonly noSavedJobsMessage: Locator;
 
     constructor (page: Page) {
         this.page = page;
@@ -15,7 +16,8 @@ export class JobPage {
         this.heartIconNumber = this.page.locator('.saved-jobs-dropdown__number');
         this.savedJobsDropdown = this.page.getByRole('button', {name: 'Saved jobs'});
         this.savedJobsTitle = this.page.locator('.saved-jobs-dropdown__list-item');
-        
+        this.noSavedJobsMessage = this.page.locator('.saved-jobs-dropdown__empty-results-heading');
+
     };
 
     async checkJobHeading (title: string): Promise<void> {
@@ -38,7 +40,8 @@ export class JobPage {
         await expect(this.savedJobsTitle).toContainText(title);
     };
 
+    async checkNoSavedJobsMessage(message: string): Promise<void> {
+        await expect(this.noSavedJobsMessage).toContainText(message);
+    };
 
-
-    
 };
