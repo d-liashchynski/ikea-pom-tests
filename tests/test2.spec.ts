@@ -2,10 +2,10 @@
 
 //   Scenario: Saved jobs counter and dropdown show empty state when nothing is saved
 //     Given I open the IKEA website "https://www.ikea.com/"
-//     And I accept the cookie consent banner if it is shown
+//     And I accept the cookie consent banner
 //     When I click on the "Jobs" tab
 //     And I click on "Explore available jobs"
-//     Then the "Saved jobs" counter in the header should show "0"
+//     Then the "Saved jobs" counter in the header should show "(0)"
 //     When I click on the "Saved jobs" element
 //     Then the dropdown should display the message "No jobs have been saved yet."
 
