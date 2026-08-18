@@ -21,7 +21,7 @@ export class SearchJobPage {
         this.locationInput = this.page.locator('[name="Location"]');
         this.addButton = this.page.getByRole('button', {name: 'Add'});
         this.addedJob = this.page.locator('[data-list-name="JobAlertCategoryLocation"]');
-        this.signUpButton = this.page.getByRole('button', {name: 'Submit Job Alerts'});
+        this.signUpButton = this.page.getByRole('button', {name: 'Sign Up'});
         this.confirmationMessage = this.page.locator('.form-message');
     };
 
